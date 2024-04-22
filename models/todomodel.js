@@ -10,7 +10,8 @@ const Todo=sequelize.define('todo',{
         },
         todoname:Sequelize.STRING,
         tododesc:Sequelize.STRING,
-        done:Sequelize.BOOLEAN
+        done:Sequelize.BOOLEAN,
+        status: Sequelize.STRING
 })
 
 
