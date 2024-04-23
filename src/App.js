@@ -19,14 +19,25 @@ function App() {
 
   const handleFilterChange = (event) => {
     console.log(event.target.value,' vaalu')
-    let filteredTodos = unDoneToDosArray.filter((todo)=>{
-      console.log(todo,' anddddfdfdfd ', event.target.value)
-      return todo.status === event.target.value;
+    let undoneTempArray = [...userArr]
+    let filteredTodos = undoneTempArray.filter((todo)=>{
+      
+      if (event.target.value==='all'){
+        return todo.done===false;
+      }
+
+      else if(event.target.value==='done') {
+        return todo.done===true && todo.status === event.target.value;
+      }
+
+      else {
+        return todo.done===false && todo.status === event.target.value;
+      }
     })
+
+console.log(filteredTodos,'this is filtered todos')
+
     setSelectedFilter(event.target.value);
-// console.log(event.target.value,' vaalu')
-// console.log(unDoneToDosArray)
-    
     setUnDoneToDosArray(filteredTodos)
   };
 
@@ -102,11 +113,13 @@ function App() {
             data.then((a)=>{
                 console.log(a,' all todos')
                 setUserArr(a.list)
-                let undoneToDos = a.list.filter((todo)=>{
-                  return todo.done == false;
-                })
+                // let undoneToDos = a.list.filter((todo)=>{
+                //   return todo.done == false;
+                // })
 
-                setUnDoneToDosArray(undoneToDos)
+                // setUnDoneToDosArray(undoneToDos)
+
+                setUnDoneToDosArray(a.list)
             
             })
             
@@ -171,7 +184,7 @@ function App() {
         <div>
         <select value={selectedFilter} onChange={handleFilterChange} class="form-select" aria-label="Default select example">
       
-        <option value="">Select an option</option>
+        <option value="all">All</option>
   <option value="todo">To Do</option>
   <option value="inProgress">In Progress</option>
   <option value="done">Done</option>
@@ -186,7 +199,7 @@ function App() {
       <th >#</th>
       <th >Title</th>
       <th>Description</th>
-      <th >Edit</th>
+      <th >Edit/ Status</th>
       <th >Delete</th>
     </tr>
   </thead>
@@ -225,7 +238,7 @@ function App() {
 
 
 
-    <div style={{margin:'30px'}}>
+    {/* <div style={{margin:'30px'}}>
       <h1>Completed Todos</h1>
 <table class='table table-dark'>
     <thead class="thead-dark">
@@ -251,7 +264,7 @@ function App() {
 </tbody>
   </table>
 
-</div>
+</div> */}
 
     </div>
   );
