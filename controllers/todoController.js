@@ -4,6 +4,7 @@ const Todo=require('../models/todomodel')
 exports.addToDo=(req,res,next)=>{
     console.log(req.body,' reqbody')
     Todo.create({
+        useremail:req.body.useremail,
         todoname:req.body.todoname,
         tododesc:req.body.tododesc,
         done:false,
@@ -40,7 +41,11 @@ exports.putToDo=(req,res,next)=>{
 
 exports.getToDos=(req,res,next)=>{
   
-    Todo.findAll().then((allTodos)=>{
+    Todo.findAll(
+        {where:{
+            useremail:req.query.useremail
+        }}
+    ).then((allTodos)=>{
             res.status(200).json({'list':allTodos})
     })
 }

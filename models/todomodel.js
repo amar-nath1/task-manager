@@ -8,6 +8,7 @@ const Todo=sequelize.define('todo',{
         allowNull:false,
         primaryKey:true
         },
+        useremail: Sequelize.STRING,
         todoname:Sequelize.STRING,
         tododesc:Sequelize.STRING,
         done:Sequelize.BOOLEAN,
