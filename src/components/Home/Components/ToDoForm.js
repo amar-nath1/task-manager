@@ -7,7 +7,7 @@ const ToDoForm = ({ setShowAlert, getAllUser }) => {
     status: "todo",
     useremail: localStorage.getItem("user"),
   });
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
   const [edit, setEdit] = useState({ yes: false, id: null });
 
   const validateForm = () => {
@@ -18,28 +18,35 @@ const ToDoForm = ({ setShowAlert, getAllUser }) => {
     if (!formData.tododesc.trim()) {
       errors.tododesc = "To Do Description is required";
     }
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
+    // setErrors(errors);
+    return errors
   };
 
   const showAlertForInvalidEntry = () => {
-    const isValid = validateForm();
+    const errors = validateForm()
+    const isValid = Object.keys(errors).length===0;
     if (!isValid) {
       if (Object.keys(errors).length > 1) {
-        setShowAlert({
-          isShow: true,
-          errorText: "More than one fields are empty",
+        setShowAlert(()=>{
+          return {
+            isShow: true,
+            errorText: "More than one fields are empty",
+          }
         });
       } else if (Object.keys(errors).length == 1) {
         const errorKey = Object.keys(errors)[0];
-        setShowAlert({ isShow: true, errorText: errors[`${errorKey}`] });
+        setShowAlert(()=>{
+          return { isShow: true, errorText: errors[`${errorKey}`] }
+        });
       }
 
       setTimeout(() => {
-        setShowAlert({ isShow: false, errorText: "" });
+        setShowAlert(()=>{
+          return { isShow: false, errorText: "" }
+        });
       }, 1500);
 
-      return;
+      return true;
     }
   };
 
@@ -71,8 +78,13 @@ const ToDoForm = ({ setShowAlert, getAllUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    showAlertForInvalidEntry();
-    addToDoApiCall();
+
+    if (!showAlertForInvalidEntry()){
+      addToDoApiCall();
+    }
+
+    // showAlertForInvalidEntry();
+   
   };
 
   const handleInputChange = (e) => {
