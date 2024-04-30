@@ -69,14 +69,16 @@ const ToDoList = ({
     setEnteredSearchText(e.target.value);
 
     let searchFilter = userArr.filter((res) => {
-      return JSON.stringify(res).includes(enteredSearchText);
+      return JSON.stringify(res).includes(e.target.value);
     });
 
     setUnDoneToDosArray(searchFilter);
   };
 
   const renderToDoListHeading = () => {
-    return <h1>To Do List</h1>;
+    return <div style={{fontWeight:'bolder',fontSize:'larger'}}>
+      To Do List
+    </div>;
   };
 
   const renderSearchBar = () => {
@@ -88,7 +90,7 @@ const ToDoList = ({
           class="form-control mr-sm-2"
           type="search"
           placeholder="Search"
-          aria-label="Search"
+          // aria-label="Search"
         />
       </div>
     );
@@ -210,12 +212,13 @@ const ToDoList = ({
   };
 
   return (
-    <div style={{ margin: "30px" }}>
-      <div
+    <div >
+      <div class='mt-3 pt-3'
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          borderTop:'2px solid'
         }}
       >
         {renderToDoListHeading()}

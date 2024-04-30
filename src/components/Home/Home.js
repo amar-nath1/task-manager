@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ToDoForm from "./Components/ToDoForm";
 import ToDoList from "./Components/ToDoList";
+import Profile from "./Components/Profile";
 // import './App.css';
 
 function Home() {
@@ -61,9 +62,16 @@ function Home() {
     );
   };
 
+  const renderProfileSection = () => {
+    return (
+      <Profile></Profile>
+    )
+  }
+
   return (
     <div class="container">
       {renderAlert()}
+      {renderProfileSection()}
       {renderTodoForm()}
       {renderToDoList()}
     </div>

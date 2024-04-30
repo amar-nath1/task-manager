@@ -9,8 +9,8 @@ import logo from '../assets/logo.png'
 
 const signinStyle={
   formDiv:{
-  width: '50%',
-  transform: 'translate(50%, 1%)',
+  width: '84vw',
+  transform: 'translate(10%, 1%)',
   border: '2px solid',
   padding: '30px'
      
