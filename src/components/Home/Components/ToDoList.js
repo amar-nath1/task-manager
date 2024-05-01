@@ -3,8 +3,8 @@ import React, { useState } from "react";
 const ToDoList = ({
   unDoneToDosArray,
   setUnDoneToDosArray,
-  getAllUser,
-  userArr,
+  getAllTodos,
+  todosArr,
 }) => {
   const [enteredSearchText, setEnteredSearchText] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("");
@@ -14,13 +14,13 @@ const ToDoList = ({
     fetch(`http://localhost:4000/delete-todo/${id}`, {
       method: "DELETE",
     }).then((res) => {
-      getAllUser();
+      getAllTodos();
     });
   };
 
   const handleFilterChange = (event) => {
     console.log(event.target.value, " vaalu");
-    let undoneTempArray = [...userArr];
+    let undoneTempArray = [...todosArr];
     let filteredTodos = undoneTempArray.filter((todo) => {
       if (event.target.value === "all") {
         return todo.done === false;
@@ -61,14 +61,14 @@ const ToDoList = ({
       },
       body: JSON.stringify(todo),
     }).then((res) => {
-      getAllUser();
+      getAllTodos();
     });
   };
 
   const onSearchTextChange = (e) => {
     setEnteredSearchText(e.target.value);
 
-    let searchFilter = userArr.filter((res) => {
+    let searchFilter = todosArr.filter((res) => {
       return JSON.stringify(res).includes(e.target.value);
     });
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ToDoForm = ({ setShowAlert, getAllUser }) => {
+const ToDoForm = ({ setShowAlert, getAllTodos }) => {
   const [formData, setFormData] = useState({
     todoname: "",
     tododesc: "",
@@ -63,7 +63,7 @@ const ToDoForm = ({ setShowAlert, getAllUser }) => {
       body: JSON.stringify(formData),
     }).then((response) => {
       if (response.ok) {
-        getAllUser();
+        getAllTodos();
         setFormData({
           todoname: "",
           tododesc: "",

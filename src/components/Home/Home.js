@@ -5,12 +5,12 @@ import Profile from "./Components/Profile";
 // import './App.css';
 
 function Home() {
-  const [userArr, setUserArr] = useState([]);
+  const [todosArr, setTodosArr] = useState([]);
   const [unDoneToDosArray, setUnDoneToDosArray] = useState([]);
   const [showAlert, setShowAlert] = useState({ isShow: false, errorText: "" });
   
 
-  const getAllUser = () => {
+  const getAllTodos = () => {
     console.log("called");
     fetch(
       `http://localhost:4000/todos?useremail=${localStorage.getItem("user")}`
@@ -21,18 +21,18 @@ function Home() {
           data.then((a) => {
             console.log(a, " all todos");
             setUnDoneToDosArray((prevList) => a.list);
-            setUserArr((prevList) => a.list);
+            setTodosArr((prevList) => a.list);
           });
         }
       })
       .catch(() => {
-        setUserArr([]);
+        setTodosArr([]);
         alert("Server Error");
       });
   };
 
   useEffect(() => {
-    getAllUser();
+    getAllTodos();
   }, []);
 
   const renderAlert = () => {
@@ -48,7 +48,7 @@ function Home() {
   };
 
   const renderTodoForm = () => {
-    return <ToDoForm setShowAlert={setShowAlert} getAllUser={getAllUser} />;
+    return <ToDoForm setShowAlert={setShowAlert} getAllTodos={getAllTodos} />;
   };
 
   const renderToDoList = () => {
@@ -56,8 +56,8 @@ function Home() {
       <ToDoList
         unDoneToDosArray={unDoneToDosArray}
         setUnDoneToDosArray={setUnDoneToDosArray}
-        getAllUser={getAllUser}
-        userArr={userArr}
+        getAllTodos={getAllTodos}
+        todosArr={todosArr}
       />
     );
   };
