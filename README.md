@@ -3,7 +3,8 @@
 ## Steps to run project
 
 ### Frontend--
-clone project from branch- new-frontend
+clone project from branch- new-frontend.
+
 open project in any IDE and run 'npm install' under root directory.
 
 run 'npm start' to start frontend.
@@ -12,10 +13,15 @@ run 'npm start' to start frontend.
 ### backend ---
 
 clone project from branch- develop-todoBackend.
-open project in any IDE and run 'npm install' under root directory.
+
+open project in any IDE and
+
+run 'npm install' under root directory.
 
 **prerequisites for backend to run-----**
+
 mysql should be installed in the system in which you are going to run the project.
+
 create database named _'tododb'_ in your mysql database.
 
 create a _' .env '_ file inside the root director of the project.
