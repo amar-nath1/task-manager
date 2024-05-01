@@ -3,7 +3,7 @@
 ## Steps to run project
 
 ### Frontend--
-clone project from branch- new-frontend.
+clone project from branch- **_new-frontend_**.
 
 open project in any IDE and run 'npm install' under root directory.
 
@@ -24,7 +24,7 @@ mysql should be installed in the system in which you are going to run the projec
 
 create database named _'tododb'_ in your mysql database.
 
-create a _' .env '_ file inside the root director of the project.
+create a _' .env '_ file inside the root directory of the project.
 please make sure that below things are available in .env file->
 PORT=4000
 
