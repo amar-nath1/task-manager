@@ -25,9 +25,9 @@ const ToDoList = ({
       if (event.target.value === "all") {
         return todo.done === false;
       } else if (event.target.value === "done") {
-        return todo.done === true && todo.status === event.target.value;
+        return todo.status === event.target.value;
       } else {
-        return todo.done === false && todo.status === event.target.value;
+        return todo.status === event.target.value;
       }
     });
 
@@ -107,7 +107,7 @@ const ToDoList = ({
         >
           <option value="all">All</option>
           <option value="todo">To Do</option>
-          <option value="inProgress">In Progress</option>
+          <option value="inprogress">In Progress</option>
           <option value="done">Done</option>
         </select>
       </div>
@@ -141,6 +141,7 @@ const ToDoList = ({
   };
 
   const renderToDoList = () => {
+    console.log(unDoneToDosArray, 'hereisundone')
     return unDoneToDosArray.map((todo, index) => (
       <tr key={todo.id}>
         <td>{index + 1}</td>
@@ -167,7 +168,7 @@ const ToDoList = ({
       >
         {/* <option selected>Open this select menu</option> */}
         <option value="todo">To do</option>
-        <option value="inProgress">In progress</option>
+        <option value="inprogress">In progress</option>
         <option value="done">Done</option>
       </select>
     );

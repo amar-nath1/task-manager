@@ -54,7 +54,7 @@ const ToDoForm = ({ setShowAlert, getAllTodos }) => {
     let url = "http://localhost:4000/add-todo";
     let method = "post";
 
-    console.log(JSON.stringify(formData), " payload react");
+    console.log(formData, " payload react");
     fetch(url, {
       method: method,
       headers: {
@@ -131,6 +131,27 @@ const ToDoForm = ({ setShowAlert, getAllTodos }) => {
     );
   };
 
+
+  const renderTodoStatusSelect = () => {
+    return (
+      <div class="form-group">
+        <label htmlFor="todoname">Select Status:</label>
+        <select  
+        class="form-select" 
+        aria-label="Default select example"
+        name="status"
+        value={formData.status}
+        onChange={handleInputChange}
+        >
+        <option selected>To do Status</option>
+        <option value="todo">To do</option>
+        <option value="inprogress">In Progress</option>
+        <option value="done">Done</option>
+</select>
+      </div>
+    );
+  };
+
   const renderAddButton = () => {
     return (
       <button
@@ -148,6 +169,7 @@ const ToDoForm = ({ setShowAlert, getAllTodos }) => {
       <form onSubmit={handleSubmit}>
         {renderTodoNameInput()}
         {renderTodoDescriptionInput()}
+        {renderTodoStatusSelect()}
         {renderAddButton()}
       </form>
     );
